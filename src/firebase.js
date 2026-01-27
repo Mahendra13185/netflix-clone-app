@@ -1,11 +1,11 @@
-import { initializeApp } from "fireBase/app";
+import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword,
          getAuth,
          signInWithEmailAndPassword,
-         signOut } from "fireBase/auth";
+         signOut } from "firebase/auth";
 import { addDoc,
         collection,
-        getFirestore } from "fireBase/firestore";
+        getFirestore } from "firebase/firestore";
 import {toast} from 'react-toastify';
 
 const firebaseConfig = {
