@@ -17,16 +17,23 @@ const Player = () => {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZDljNzUxMTY1MWE5ZTg5OWU1ZjcxYjMwZTRmMWQ5NiIsIm5iZiI6MTc2OTQ5MTMwMi4yOTYsInN1YiI6IjY5Nzg0YjY2YmY3M2RlNjg3NGEzOGU3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qWaeHU78VK26ffZ76Kw9cIqLsKdRq50I5IwCwzPnpzQ'
+    Authorization: `Bearer ${TMDB_KEY}`
   }
 };
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
-      .then(res => res.json())
-      .then(res => setApiData(res.results[0]))
-      .catch(err => console.error(err));
-  }, []);
+  fetch(
+    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US`
+  )
+    .then(res => res.json())
+    .then(res => {
+      if (res.results && res.results.length > 0) {
+        setApiData(res.results[0]);
+      }
+    })
+    .catch(err => console.error(err));
+}, [id]);
+
 
 
   return (
