@@ -1,12 +1,6 @@
 [build]
-  command = "pnpm run build"
+  command = "yarn build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20.19.0"
-
-[build.processing]
-  skip_processing = false
-
-[build.lifecycle]
-  onBuild = "corepack enable && pnpm install"
